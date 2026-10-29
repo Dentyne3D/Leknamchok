@@ -305,6 +305,34 @@ header.ticket{grid-template-columns:auto 1fr}
 .qk.feat{grid-column:1/-1;background:linear-gradient(180deg,var(--gold2),var(--gold));box-shadow:0 5px 0 #c98a00}
 .qk.feat span{color:#5a4300}
 @media (prefers-reduced-motion:reduce){#cat,.tail,.lantern,#eyesOpen,.pray,.ember{animation:none}}
+.heaven{position:relative;width:min(360px,88vw);aspect-ratio:1;justify-self:center;max-width:100%}
+.heaven svg{width:100%;height:100%;display:block;filter:drop-shadow(0 12px 24px rgba(0,0,0,.4))}
+.heaven #ysRays,.heaven #ysAura,.heaven #yoshi,.heaven #ysHold,.heaven #ysOpen,.heaven #ysSparks path,.heaven #ysCrown{transform-box:fill-box}
+#ysRays{transform-origin:50% 50%;animation:spin 40s linear infinite}
+.bless #ysRays{animation-duration:6s;opacity:.5}
+@keyframes spin{to{transform:rotate(360deg)}}
+#ysAura{transform-origin:50% 50%;opacity:.5;transition:opacity .6s}
+.bless #ysAura{opacity:1;animation:halo 1.4s ease-in-out infinite}
+#yoshi{animation:float 3.6s ease-in-out infinite}
+@keyframes float{50%{transform:translateY(-6px)}}
+#ysOpen{transform-origin:50% 50%;animation:blink 5s infinite}
+#ysClosed{opacity:0}
+.yclosed #ysOpen{opacity:0;animation:none}.yclosed #ysClosed{opacity:1}
+.bless #ysOpen{animation:wide .5s ease}
+#ysHold{transform-origin:50% 100%}
+.shaking #ysHold{animation:shake .13s linear infinite}
+#ysCrown{transform-origin:50% 100%}
+.bless #ysCrown{animation:crown .6s ease}
+@keyframes crown{40%{transform:translateY(-6px) scale(1.04)}}
+#ysSparks path{opacity:0;transform-origin:50% 50%}
+.bless #ysSparks path{animation:burst 1.6s ease-out infinite}
+.bless #ysSparks path:nth-child(2){animation-delay:.25s}.bless #ysSparks path:nth-child(3){animation-delay:.5s}.bless #ysSparks path:nth-child(4){animation-delay:.75s}.bless #ysSparks path:nth-child(5){animation-delay:1s}.bless #ysSparks path:nth-child(6){animation-delay:1.25s}
+@keyframes burst{0%{opacity:0;transform:scale(.2) rotate(0)}30%{opacity:1;transform:scale(1.3) rotate(45deg)}100%{opacity:0;transform:scale(.4) rotate(90deg)}}
+.heaven .pop{left:50%;bottom:41%;width:4.6%;height:34%;margin-left:-2.3%;font-size:clamp(10px,3vw,13px)}
+.heaven .pop.out{animation:popout2 .75s cubic-bezier(.3,1.5,.5,1) forwards}
+@keyframes popout2{0%{opacity:1;transform:translateY(30%) rotate(0)}45%{opacity:1;transform:translate(260%,-70%) rotate(30deg)}100%{opacity:1;transform:translate(600%,-8%) rotate(24deg)}}
+@media (prefers-reduced-motion:reduce){#ysRays,#yoshi,#ysOpen{animation:none}}
+.seg.big{max-width:100%;overflow-x:auto;scrollbar-width:none}.seg.big button{padding:8px 13px;font-size:14.5px;white-space:nowrap}
 </style>
 </head>
 <body>
@@ -348,7 +376,7 @@ header.ticket{grid-template-columns:auto 1fr}
     <a href="#luck" class="qk feat" data-sub="yuki"><b>🙏 เข้าสำนักแมวยูกิ</b><span>กราบหลวงพ่อยูกิ ขอเลขเด็ดงวดนี้</span></a>
     <a href="#dream" class="qk"><b>ตีความฝัน</b><span>เล่าฝันแล้วได้เลข</span></a>
     <a href="#luck" class="qk" data-sub="wheel"><b>หมุนกงล้อ</b><span>ลุ้นทีละหลัก</span></a>
-    <a href="#luck" class="qk" data-sub="siamsi"><b>เขย่าเซียมซี</b><span>เสี่ยงทายพร้อมคำทำนาย</span></a>
+    <a href="#luck" class="qk" data-sub="siamsi"><b>เซียมซีเทพโยชิ</b><span>ขอพรมหาเทพแมว</span></a>
     <a href="#check" class="qk"><b>ตรวจหวย</b><span>ถูกรางวัลไหม</span></a>
   </div>
 
@@ -379,7 +407,7 @@ header.ticket{grid-template-columns:auto 1fr}
 
 <section class="panel" id="p-luck" hidden>
   <div class="seg big" id="lkSeg" role="group" aria-label="เลือกวิธีเสี่ยงทาย">
-    <button data-v="yuki" class="on">สำนักยูกิ</button><button data-v="wheel">กงล้อ</button><button data-v="siamsi">เซียมซี</button><button data-v="life">เลขชีวิตจริง</button>
+    <button data-v="yuki" class="on">สำนักยูกิ</button><button data-v="siamsi">เทพโยชิ</button><button data-v="wheel">กงล้อ</button><button data-v="life">เลขชีวิต</button>
   </div>
 
   <div class="box yukibox" id="lk-yuki">
@@ -394,7 +422,7 @@ header.ticket{grid-template-columns:auto 1fr}
           <radialGradient id="ykFur" cx=".42" cy=".35" r=".75"><stop offset="0" stop-color="#ffffff"/><stop offset=".7" stop-color="#fffaf2"/><stop offset="1" stop-color="#f3e4d2"/></radialGradient>
           <linearGradient id="ykRobe" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ffab45"/><stop offset=".55" stop-color="#f0871f"/><stop offset="1" stop-color="#cf6a0e"/></linearGradient>
           <linearGradient id="ykSash" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#e07a14"/><stop offset="1" stop-color="#b75a08"/></linearGradient>
-          <radialGradient id="ykIris" cx=".5" cy=".62" r=".6"><stop offset="0" stop-color="#ffcf4d"/><stop offset=".55" stop-color="#d98b16"/><stop offset="1" stop-color="#5a3008"/></radialGradient>
+          <radialGradient id="ykIris" cx=".5" cy=".62" r=".6"><stop offset="0" stop-color="#d6ecff"/><stop offset=".5" stop-color="#7eaee6"/><stop offset="1" stop-color="#2c4c80"/></radialGradient>
           <radialGradient id="ykBlush"><stop offset="0" stop-color="#ff8fab" stop-opacity=".75"/><stop offset="1" stop-color="#ff8fab" stop-opacity="0"/></radialGradient>
           <radialGradient id="ykJar" cx=".35" cy=".35" r=".8"><stop offset="0" stop-color="#c47a3e"/><stop offset=".6" stop-color="#8a4b22"/><stop offset="1" stop-color="#4f240c"/></radialGradient>
           <radialGradient id="ykCush" cx=".5" cy=".3" r=".8"><stop offset="0" stop-color="#ff4b5c"/><stop offset="1" stop-color="#a10e1c"/></radialGradient>
@@ -429,8 +457,8 @@ header.ticket{grid-template-columns:auto 1fr}
         <g fill="#ffcc33"><circle cx="62" cy="300" r="4"/><circle cx="298" cy="300" r="4"/><path d="M60 303 l-3 12 h10 l-3 -12Z"/><path d="M296 303 l-3 12 h10 l-3 -12Z"/></g>
         <g id="cat">
           <!-- tail -->
-          <g class="tail"><path d="M246 290 C286 298 306 270 296 244 C290 230 274 232 276 244 C278 256 290 262 284 274 C276 288 258 286 242 280 Z" fill="url(#ykFur)" stroke="#e3cdb8" stroke-width="2.5" stroke-linejoin="round"/>
-            <path d="M276 244 C274 234 288 230 294 240 C291 246 284 248 278 250 Z" fill="#f6a752"/></g>
+          <g class="tail"><path d="M246 290 C286 298 306 270 296 244 C290 230 274 232 276 244 C278 256 290 262 284 274 C276 288 258 286 242 280 Z" fill="#cdc1b7" stroke="#a89a8f" stroke-width="2.5" stroke-linejoin="round"/><path d="M262 282 l4 10 M276 276 l9 6 M287 262 l10 1 M290 250 l9 -4" stroke="#a89a8f" stroke-width="4" stroke-linecap="round"/>
+            <path d="M276 244 C274 234 288 230 294 240 C291 246 284 248 278 250 Z" fill="#9e9086"/></g>
           <!-- body / robe -->
           <path d="M112 298 C108 252 124 214 180 208 C236 214 252 252 248 298 Z" fill="url(#ykRobe)" stroke="#c4600a" stroke-width="2"/>
           <path d="M132 220 C158 244 196 268 240 296 L218 298 C184 274 152 252 124 236 Z" fill="url(#ykSash)"/>
@@ -443,24 +471,24 @@ header.ticket{grid-template-columns:auto 1fr}
           <g fill="#7a3d12" stroke="#4f240c" stroke-width=".8"><circle cx="142" cy="206" r="4"/><circle cx="150" cy="212" r="4"/><circle cx="159" cy="216" r="4"/><circle cx="169" cy="219" r="4"/><circle cx="191" cy="219" r="4"/><circle cx="201" cy="216" r="4"/><circle cx="210" cy="212" r="4"/><circle cx="218" cy="206" r="4"/></g>
           <circle cx="180" cy="224" r="7.5" fill="url(#ykGold)" stroke="#b87800" stroke-width="1.5"/><path d="M180 219 v10 M175 224 h10" stroke="#b87800" stroke-width="1.5"/>
           <!-- ears -->
-          <path d="M116 112 C108 86 112 60 120 50 C136 58 156 74 166 88 Z" fill="url(#ykFur)" stroke="#e3cdb8" stroke-width="2.5" stroke-linejoin="round"/>
-          <path d="M244 112 C252 86 248 60 240 50 C224 58 204 74 194 88 Z" fill="url(#ykFur)" stroke="#e3cdb8" stroke-width="2.5" stroke-linejoin="round"/>
-          <path d="M124 100 C120 84 122 70 126 64 C138 72 148 80 154 90 Z" fill="#f6a752"/>
+          <path d="M116 112 C108 86 112 60 120 50 C136 58 156 74 166 88 Z" fill="#d3c8bf" stroke="#e3cdb8" stroke-width="2.5" stroke-linejoin="round"/>
+          <path d="M244 112 C252 86 248 60 240 50 C224 58 204 74 194 88 Z" fill="#d3c8bf" stroke="#e3cdb8" stroke-width="2.5" stroke-linejoin="round"/>
+          <path d="M124 100 C120 84 122 70 126 64 C138 72 148 80 154 90 Z" fill="#ffb3c6"/>
           <path d="M236 100 C240 84 238 70 234 64 C224 72 212 80 206 90 Z" fill="#ffb3c6"/>
           <path d="M232 92 l-6 -10 M226 96 l-8 -8" stroke="#fff" stroke-width="1.6" stroke-linecap="round"/>
           <!-- head -->
           <ellipse cx="180" cy="134" rx="76" ry="64" fill="url(#ykFur)" stroke="#e3cdb8" stroke-width="2.5"/>
-          <g clip-path="url(#ykHeadClip)"><path d="M100 120 C104 84 140 66 172 72 C170 92 150 104 132 112 C120 118 108 124 100 132 Z" fill="#f6a752"/><path d="M142 78 C150 74 160 72 168 73" stroke="#ffd09a" stroke-width="3" fill="none" stroke-linecap="round"/></g>
+          <g clip-path="url(#ykHeadClip)"><path d="M100 132 C100 90 132 68 168 70 C172 86 166 104 158 118 C146 122 136 128 128 138 C118 136 108 136 100 140 Z" fill="#cdc1b7"/><path d="M260 132 C260 90 228 68 192 70 C188 86 194 104 202 118 C214 122 224 128 232 138 C242 136 252 136 260 140 Z" fill="#cdc1b7"/><path d="M122 96 q9 6 11 17 M139 84 q7 8 7 19 M238 96 q-9 6 -11 17 M221 84 q-7 8 -7 19" stroke="#b2a59a" stroke-width="3" fill="none" stroke-linecap="round"/></g>
           <path d="M112 160 C104 166 104 176 114 178 C114 172 118 168 122 166 Z M248 160 C256 166 256 176 246 178 C246 172 242 168 238 166 Z" fill="url(#ykFur)" stroke="#e3cdb8" stroke-width="2" stroke-linejoin="round"/>
           <ellipse cx="136" cy="160" rx="16" ry="10" fill="url(#ykBlush)"/><ellipse cx="224" cy="160" rx="16" ry="10" fill="url(#ykBlush)"/>
           <g id="eyesOpen">
-            <ellipse cx="152" cy="138" rx="16" ry="18" fill="#2a160a"/><ellipse cx="152" cy="141" rx="13" ry="14" fill="url(#ykIris)"/><ellipse cx="152" cy="141" rx="5" ry="10" fill="#1a0c04"/>
+            <ellipse cx="152" cy="138" rx="16" ry="18" fill="#1f2c45"/><ellipse cx="152" cy="141" rx="13" ry="14" fill="url(#ykIris)"/><ellipse cx="152" cy="141" rx="5" ry="10" fill="#1a0c04"/>
             <ellipse cx="157" cy="131" rx="5.5" ry="6" fill="#fff"/><circle cx="146" cy="148" r="2.6" fill="#fff" opacity=".9"/>
-            <ellipse cx="208" cy="138" rx="16" ry="18" fill="#2a160a"/><ellipse cx="208" cy="141" rx="13" ry="14" fill="url(#ykIris)"/><ellipse cx="208" cy="141" rx="5" ry="10" fill="#1a0c04"/>
+            <ellipse cx="208" cy="138" rx="16" ry="18" fill="#1f2c45"/><ellipse cx="208" cy="141" rx="13" ry="14" fill="url(#ykIris)"/><ellipse cx="208" cy="141" rx="5" ry="10" fill="#1a0c04"/>
             <ellipse cx="213" cy="131" rx="5.5" ry="6" fill="#fff"/><circle cx="202" cy="148" r="2.6" fill="#fff" opacity=".9"/>
           </g>
           <g id="eyesClosed" stroke="#3a2212" stroke-width="4" stroke-linecap="round" fill="none"><path d="M138 142 q14 10 28 0"/><path d="M194 142 q14 10 28 0"/><path d="M138 142 l-5 -3 M222 142 l5 -3" stroke-width="2.5"/></g>
-          <path d="M176 156 q4 -3 8 0 q0 4 -4 6 q-4 -2 -4 -6Z" fill="#ff8fa3" stroke="#e86c86" stroke-width="1"/>
+          <path d="M175 155 q5 -3 10 0 q0 5 -5 7 q-5 -2 -5 -7Z" fill="#4a3434" stroke="#2a1c1c" stroke-width="1"/><ellipse cx="178" cy="156" rx="1.6" ry="1" fill="#fff" opacity=".6"/>
           <path d="M180 162 v3 M171 164 q4 6 9 1 q5 5 9 -1" stroke="#3a2212" stroke-width="2.2" fill="none" stroke-linecap="round"/>
           <g stroke="#d8c3ad" stroke-width="1.6" stroke-linecap="round"><path d="M118 150 L94 144 M118 158 L95 160 M242 150 L266 144 M242 158 L265 160"/></g>
           <!-- right arm -->
@@ -518,13 +546,101 @@ header.ticket{grid-template-columns:auto 1fr}
   </div>
 
   <div class="box ssbox" id="lk-siamsi" hidden>
-    <div style="text-align:center"><h2>เซียมซีเสี่ยงทาย</h2><p class="hint">ตั้งจิตถามเรื่องที่อยากรู้ แล้วกดเขย่า (บนมือถือเขย่าเครื่องจริงได้)</p></div>
-    <div class="tube" id="tube" aria-hidden="true">
-      <div class="sticks"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
-      <div class="cup"><span>เซียมซี</span></div>
+    <div style="text-align:center"><h2>เซียมซีเทพโยชิ</h2><p class="hint">มหาเทพแมวโยชิประทับรออยู่บนเมฆ ตั้งจิตแล้วกดเขย่า (บนมือถือเขย่าเครื่องจริงได้)</p></div>
+    <div class="heaven" id="heaven">
+      <svg viewBox="0 0 360 360" role="img" aria-label="มหาเทพแมวโยชิประทับบนเมฆ ถือกระบอกเซียมซี">
+        <defs>
+          <linearGradient id="ysSky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#241763"/><stop offset=".55" stop-color="#5b36a8"/><stop offset="1" stop-color="#c46aa8"/></linearGradient>
+          <radialGradient id="ysGlow"><stop offset="0" stop-color="#fff6c2" stop-opacity=".95"/><stop offset=".5" stop-color="#ffd54a" stop-opacity=".45"/><stop offset="1" stop-color="#ffc928" stop-opacity="0"/></radialGradient>
+          <radialGradient id="ysFur" cx=".42" cy=".35" r=".8"><stop offset="0" stop-color="#e4e6e9"/><stop offset=".7" stop-color="#b8bbc0"/><stop offset="1" stop-color="#8e9298"/></radialGradient>
+          <radialGradient id="ysIris" cx=".5" cy=".62" r=".6"><stop offset="0" stop-color="#fff0a0"/><stop offset=".5" stop-color="#e3b62a"/><stop offset="1" stop-color="#6e5208"/></radialGradient>
+          <linearGradient id="ysGold" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff0a8"/><stop offset=".45" stop-color="#ffcc33"/><stop offset="1" stop-color="#d99400"/></linearGradient>
+          <linearGradient id="ysCupG" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#9a0f1c"/><stop offset=".4" stop-color="#e52b3a"/><stop offset="1" stop-color="#8a0c18"/></linearGradient>
+          <radialGradient id="ysBlush"><stop offset="0" stop-color="#ff8fab" stop-opacity=".6"/><stop offset="1" stop-color="#ff8fab" stop-opacity="0"/></radialGradient>
+          <clipPath id="ysHeadClip"><ellipse cx="180" cy="130" rx="70" ry="58"/></clipPath>
+        </defs>
+        <rect width="360" height="360" rx="28" fill="url(#ysSky)"/>
+        <g fill="#fff"><circle cx="40" cy="40" r="1.6"/><circle cx="90" cy="24" r="1.2"/><circle cx="300" cy="34" r="1.8"/><circle cx="330" cy="90" r="1.2"/><circle cx="24" cy="120" r="1.3"/><circle cx="270" cy="70" r="1"/></g>
+        <g id="ysRays" fill="#ffe27a" opacity=".22">
+          <path d="M180 130 L172 -60 L188 -60Z"/><path d="M180 130 L172 -60 L188 -60Z" transform="rotate(30 180 130)"/><path d="M180 130 L172 -60 L188 -60Z" transform="rotate(60 180 130)"/><path d="M180 130 L172 -60 L188 -60Z" transform="rotate(90 180 130)"/><path d="M180 130 L172 -60 L188 -60Z" transform="rotate(120 180 130)"/><path d="M180 130 L172 -60 L188 -60Z" transform="rotate(150 180 130)"/><path d="M180 130 L172 -60 L188 -60Z" transform="rotate(180 180 130)"/><path d="M180 130 L172 -60 L188 -60Z" transform="rotate(210 180 130)"/><path d="M180 130 L172 -60 L188 -60Z" transform="rotate(240 180 130)"/><path d="M180 130 L172 -60 L188 -60Z" transform="rotate(270 180 130)"/><path d="M180 130 L172 -60 L188 -60Z" transform="rotate(300 180 130)"/><path d="M180 130 L172 -60 L188 -60Z" transform="rotate(330 180 130)"/>
+        </g>
+        <circle id="ysAura" cx="180" cy="130" r="120" fill="url(#ysGlow)"/>
+        <g fill="#f3e6ff" opacity=".55"><ellipse cx="60" cy="300" rx="70" ry="26"/><ellipse cx="300" cy="296" rx="80" ry="28"/></g>
+        <g id="yoshi">
+          <!-- tail -->
+          <path d="M232 280 C278 286 296 252 284 228 C278 216 262 220 266 232 C270 244 280 250 274 262 C266 274 248 272 230 268 Z" fill="url(#ysFur)" stroke="#6e7277" stroke-width="2"/>
+          <path d="M266 232 l9 -3 M272 248 l10 2 M272 262 l7 7 M254 272 l2 9" stroke="#3a3c41" stroke-width="4" stroke-linecap="round"/>
+          <!-- body -->
+          <path d="M116 296 C110 246 126 196 180 190 C234 196 250 246 244 296 Z" fill="url(#ysFur)" stroke="#6e7277" stroke-width="2"/>
+          <path d="M150 210 C176 222 184 222 210 210 C206 250 196 280 180 290 C164 280 154 250 150 210 Z" fill="#f4f5f7"/>
+          <g stroke="#3a3c41" stroke-width="4" stroke-linecap="round" fill="none" opacity=".8"><path d="M124 232 q10 4 18 0 M120 252 q10 4 18 0 M118 272 q10 4 18 0 M236 232 q-10 4 -18 0 M240 252 q-10 4 -18 0 M242 272 q-10 4 -18 0"/></g>
+          <!-- deity collar & shoulder ornaments -->
+          <path d="M132 196 Q180 236 228 196 L222 188 Q180 220 138 188 Z" fill="url(#ysGold)" stroke="#b87800" stroke-width="1.5"/>
+          <g fill="#e52b3a"><circle cx="150" cy="202" r="3.2"/><circle cx="165" cy="209" r="3.2"/><circle cx="195" cy="209" r="3.2"/><circle cx="210" cy="202" r="3.2"/></g>
+          <path d="M172 212 h16 l-8 16Z" fill="url(#ysGold)" stroke="#b87800" stroke-width="1"/><circle cx="180" cy="217" r="3.5" fill="#2a8bff"/>
+          <path d="M122 200 C108 196 102 186 104 176 C114 184 124 188 136 190Z" fill="url(#ysGold)" stroke="#b87800" stroke-width="1"/>
+          <path d="M238 200 C252 196 258 186 256 176 C246 184 236 188 224 190Z" fill="url(#ysGold)" stroke="#b87800" stroke-width="1"/>
+          <!-- ears -->
+          <path d="M118 108 C110 84 114 62 122 54 C136 62 150 74 158 86 Z" fill="url(#ysFur)" stroke="#6e7277" stroke-width="2" stroke-linejoin="round"/>
+          <path d="M242 108 C250 84 246 62 238 54 C224 62 210 74 202 86 Z" fill="url(#ysFur)" stroke="#6e7277" stroke-width="2" stroke-linejoin="round"/>
+          <path d="M126 98 C122 82 124 70 128 64 C138 72 146 80 150 88Z" fill="#f2a6b8"/><path d="M234 98 C238 82 236 70 232 64 C222 72 214 80 210 88Z" fill="#f2a6b8"/>
+          <!-- head -->
+          <ellipse cx="180" cy="130" rx="70" ry="58" fill="url(#ysFur)" stroke="#6e7277" stroke-width="2"/>
+          <g clip-path="url(#ysHeadClip)" stroke="#3a3c41" stroke-linecap="round" fill="none" opacity=".85">
+            <path d="M162 76 l4 22 M180 74 v24 M198 76 l-4 22" stroke-width="4.5"/>
+            <path d="M156 100 q8 6 12 0 M192 100 q8 6 12 0" stroke-width="3"/>
+            <path d="M110 128 q12 2 20 -4 M110 140 q12 2 20 -4 M250 128 q-12 2 -20 -4 M250 140 q-12 2 -20 -4" stroke-width="3.5"/>
+          </g>
+          <path d="M150 156 C152 142 166 138 180 146 C194 138 208 142 210 156 C206 176 192 184 180 184 C168 184 154 176 150 156 Z" fill="#f4f5f7"/>
+          <ellipse cx="134" cy="152" rx="15" ry="9" fill="url(#ysBlush)"/><ellipse cx="226" cy="152" rx="15" ry="9" fill="url(#ysBlush)"/>
+          <g id="ysOpen">
+            <ellipse cx="152" cy="130" rx="15" ry="17" fill="#2a2208"/><ellipse cx="152" cy="133" rx="12.5" ry="13.5" fill="url(#ysIris)"/><ellipse cx="152" cy="133" rx="4.5" ry="10" fill="#120c02"/>
+            <ellipse cx="157" cy="124" rx="5" ry="5.5" fill="#fff"/><circle cx="147" cy="140" r="2.4" fill="#fff" opacity=".9"/>
+            <ellipse cx="208" cy="130" rx="15" ry="17" fill="#2a2208"/><ellipse cx="208" cy="133" rx="12.5" ry="13.5" fill="url(#ysIris)"/><ellipse cx="208" cy="133" rx="4.5" ry="10" fill="#120c02"/>
+            <ellipse cx="213" cy="124" rx="5" ry="5.5" fill="#fff"/><circle cx="203" cy="140" r="2.4" fill="#fff" opacity=".9"/>
+          </g>
+          <g id="ysClosed" stroke="#2a2208" stroke-width="4" stroke-linecap="round" fill="none"><path d="M138 134 q14 10 28 0"/><path d="M194 134 q14 10 28 0"/></g>
+          <path d="M175 150 q5 -3 10 0 q0 5 -5 7 q-5 -2 -5 -7Z" fill="#d97a8a" stroke="#a8505f" stroke-width="1"/>
+          <path d="M180 157 v3 M171 159 q4 6 9 1 q5 5 9 -1" stroke="#3a2a2a" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+          <g stroke="#f4f5f7" stroke-width="1.6" stroke-linecap="round"><path d="M150 152 L124 146 M150 160 L125 162 M210 152 L236 146 M210 160 L235 162"/></g>
+          <!-- chada crown -->
+          <g id="ysCrown">
+            <path d="M120 98 C112 92 110 80 116 72 C120 82 128 88 136 90Z" fill="url(#ysGold)" stroke="#b87800" stroke-width="1"/>
+            <path d="M240 98 C248 92 250 80 244 72 C240 82 232 88 224 90Z" fill="url(#ysGold)" stroke="#b87800" stroke-width="1"/>
+            <path d="M132 92 L228 92 L220 76 L140 76 Z" fill="url(#ysGold)" stroke="#b87800" stroke-width="1.5"/>
+            <path d="M144 76 L216 76 L206 58 L154 58 Z" fill="url(#ysGold)" stroke="#b87800" stroke-width="1.5"/>
+            <path d="M156 58 L204 58 L196 42 L164 42 Z" fill="url(#ysGold)" stroke="#b87800" stroke-width="1.5"/>
+            <path d="M166 42 L194 42 L188 28 L172 28 Z" fill="url(#ysGold)" stroke="#b87800" stroke-width="1.5"/>
+            <path d="M174 28 L186 28 L180 2 Z" fill="url(#ysGold)" stroke="#b87800" stroke-width="1.5"/>
+            <g fill="#e52b3a"><circle cx="150" cy="84" r="3.4"/><circle cx="180" cy="84" r="4.2"/><circle cx="210" cy="84" r="3.4"/><circle cx="180" cy="66" r="3.4"/><circle cx="180" cy="50" r="2.8"/></g>
+            <circle cx="180" cy="84" r="1.6" fill="#fff"/>
+            <path d="M148 70 h64 M160 52 h40" stroke="#fff6c2" stroke-width="1.2" opacity=".7"/>
+          </g>
+          <!-- cup held in both paws -->
+          <g id="ysHold">
+            <g stroke-linecap="round" stroke-width="5"><line x1="160" y1="226" x2="158" y2="196" stroke="#f1d9a4"/><line x1="168" y1="226" x2="168" y2="190" stroke="#f1d9a4"/><line x1="176" y1="226" x2="177" y2="198" stroke="#f1d9a4"/><line x1="184" y1="226" x2="185" y2="188" stroke="#f1d9a4"/><line x1="192" y1="226" x2="193" y2="196" stroke="#f1d9a4"/><line x1="200" y1="226" x2="202" y2="192" stroke="#f1d9a4"/></g>
+            <g stroke-linecap="round" stroke-width="5" stroke="#e52b3a"><line x1="158" y1="196" x2="158" y2="202"/><line x1="168" y1="190" x2="168" y2="196"/><line x1="177" y1="198" x2="177" y2="204"/><line x1="185" y1="188" x2="185" y2="194"/><line x1="193" y1="196" x2="193" y2="202"/><line x1="202" y1="192" x2="202" y2="198"/></g>
+            <rect x="150" y="212" width="60" height="78" rx="9" fill="url(#ysCupG)" stroke="url(#ysGold)" stroke-width="4"/>
+            <rect x="150" y="226" width="60" height="5" fill="#ffcc33"/><rect x="150" y="272" width="60" height="5" fill="#ffcc33"/>
+            <text x="180" y="256" text-anchor="middle" font-family="Mitr, sans-serif" font-size="12" fill="#ffe27a">เซียมซี</text>
+            <path d="M138 238 C126 236 120 252 128 262 C136 268 148 264 152 256Z" fill="url(#ysFur)" stroke="#6e7277" stroke-width="2"/>
+            <path d="M222 238 C234 236 240 252 232 262 C224 268 212 264 208 256Z" fill="url(#ysFur)" stroke="#6e7277" stroke-width="2"/>
+            <rect x="126" y="232" width="18" height="6" rx="3" fill="url(#ysGold)" transform="rotate(-20 135 235)"/><rect x="216" y="232" width="18" height="6" rx="3" fill="url(#ysGold)" transform="rotate(20 225 235)"/>
+          </g>
+        </g>
+        <!-- clouds in front -->
+        <g>
+          <path d="M40 360 C30 330 60 312 86 320 C92 296 126 290 144 306 C158 288 196 288 210 306 C228 290 262 296 270 320 C298 312 330 330 320 360 Z" fill="#fbf3ff"/>
+          <path d="M60 360 C66 342 86 336 100 342 C112 330 136 330 148 342 C164 332 196 332 210 342 C224 330 250 332 258 344 C274 338 292 346 296 360Z" fill="#e8d6fa"/>
+        </g>
+        <g id="ysSparks" fill="#fff6c2">
+          <path d="M80 150 l3 8 8 3 -8 3 -3 8 -3 -8 -8 -3 8 -3Z"/><path d="M286 140 l3 8 8 3 -8 3 -3 8 -3 -8 -8 -3 8 -3Z"/><path d="M110 70 l2 6 6 2 -6 2 -2 6 -2 -6 -6 -2 6 -2Z"/><path d="M262 60 l2 6 6 2 -6 2 -2 6 -2 -6 -6 -2 6 -2Z"/><path d="M300 230 l2 6 6 2 -6 2 -2 6 -2 -6 -6 -2 6 -2Z"/><path d="M58 236 l2 6 6 2 -6 2 -2 6 -2 -6 -6 -2 6 -2Z"/>
+        </g>
+      </svg>
       <div class="pop" id="popStick"></div>
+      <div class="bubble" id="ysBubble" hidden></div>
     </div>
-    <div class="row" style="justify-content:center"><button id="shake">เขย่าเซียมซี</button><button class="ghost" id="motionBtn" hidden>เปิดเขย่ามือถือ</button></div>
+    <div class="row" style="justify-content:center"><button id="shake">🙏 ขอพรเทพโยชิ เขย่าเซียมซี</button><button class="ghost" id="motionBtn" hidden>เปิดเขย่ามือถือ</button></div>
     <div id="ssOut" class="ssout" aria-live="polite"></div>
   </div>
 
@@ -1011,13 +1127,25 @@ function addHist(arr){wHist=wHist.concat(arr).slice(-30);LS("lotto_wheel",wHist)
 const SS=[["ดีมาก","ทำสิ่งใดช่วงนี้มีผู้ใหญ่คอยหนุน เงินทองค่อยๆ ไหลเข้า อย่ารีบร้อน รอจังหวะแล้วจะสมหวัง"],["ดี","เหมือนต้นไม้ได้น้ำฝน สิ่งที่ลงแรงไว้เริ่มผลิดอก ขยันต่ออีกนิดผลจะงอกงาม"],["ปานกลาง","ทางข้างหน้ายังมีหมอกบาง ค่อยๆ เดิน อย่าตัดสินใจเรื่องใหญ่ตอนใจร้อน"],["ดีมาก","ลาภลอยมาจากทางที่ไม่คาดคิด คนใกล้ตัวจะนำข่าวดีมาให้ แบ่งปันแล้วโชคจะทวีคูณ"],["ดี","เรื่องค้างคาจะคลี่คลาย คนที่เคยขัดใจจะกลายเป็นมิตร การงานราบรื่นกว่าที่คิด"],["ระวัง","ช่วงนี้ใช้จ่ายเกินตัวง่าย ถือเงินไว้ให้มั่น รอฤดูกาลใหม่โชคจะกลับมา"],["ดี","เดินทางไปทางทิศตะวันออกมีโชค ได้พบคนที่ช่วยเหลือ มีเงินเข้าเล็กๆ ต่อเนื่อง"],["ดีมาก","ดุจพระจันทร์เต็มดวง สิ่งที่หวังไว้มีโอกาสสำเร็จ ทำบุญแล้วจะยิ่งสว่างไสว"],["ปานกลาง","ได้อย่างเสียอย่าง อย่าโลภ เลือกสิ่งที่สำคัญที่สุดแล้วทุ่มให้เต็มที่"],["ดี","ความรักและครอบครัวอบอุ่น บ้านมีเรื่องให้ยิ้ม การเงินพอใช้ไม่ขัดสน"],["ดีมาก","ปลาใหญ่เข้าแห งานที่ทำจะมีคนเห็นค่า มีโอกาสได้รางวัลหรือคำชม"],["ระวัง","คำพูดเป็นนายเรา ระวังเรื่องเข้าใจผิดกับคนใกล้ตัว ใจเย็นแล้วทุกอย่างจะดีขึ้น"],["ดี","เหมือนนกได้ลมส่ง สิ่งที่เริ่มใหม่จะไปได้ไว ลองทำสิ่งที่ลังเลมานาน"],["ปานกลาง","ช่วงนี้เหนื่อยหน่อย แต่เป็นการปูทาง อีกไม่นานจะได้พักและได้ผลตอบแทน"],["ดีมาก","ทองอยู่ใต้ดิน ขุดลึกอีกนิดก็เจอ ความพยายามครั้งนี้จะไม่สูญเปล่า"],["ดี","เพื่อนเก่าจะติดต่อมาพร้อมโอกาสดี อย่าปฏิเสธเร็วเกินไป"],["ปานกลาง","น้ำนิ่งไหลลึก อย่าเพิ่งเปิดเผยแผนการ ทำเงียบๆ แล้วจะสำเร็จ"],["ดี","สุขภาพแข็งแรง จิตใจแจ่มใส เป็นช่วงเหมาะกับการเริ่มเก็บออม"],["ดีมาก","ฟ้าเปิด โชคลาภมาเป็นระลอก มีเกณฑ์ได้ยินข่าวดีเรื่องเงินภายในเดือนนี้"],["ระวัง","อย่าค้ำประกันหรือให้ยืมเงินก้อนใหญ่ช่วงนี้ เก็บของมีค่าให้ดี"],["ดี","ผู้ใหญ่เมตตา การติดต่อเรื่องเอกสารหรืองานราชการจะผ่านไปด้วยดี"],["ปานกลาง","เหมือนเรือรอลม ยังไม่ถึงเวลาออกเดินทาง เตรียมตัวให้พร้อมไว้ก่อน"],["ดีมาก","ดอกบัวพ้นน้ำ อุปสรรคที่ผ่านมาจบลง ชีวิตกำลังเข้าสู่ช่วงขาขึ้น"],["ดี","งานเสริมหรือรายได้ทางที่สองไปได้สวย ลองต่อยอดสิ่งที่ถนัด"],["ปานกลาง","ใจอยากได้หลายอย่าง แต่มือมีแค่สองข้าง จัดลำดับให้ดีแล้วจะไม่พลาด"],["ดี","มีเกณฑ์ได้ของขวัญหรือได้กินของอร่อย ความสุขเล็กๆ จะมาบ่อย"],["ดีมาก","มังกรได้แก้ว ทำการใหญ่ได้ มีคนพร้อมสนับสนุนรอบด้าน"],["ดี","ความตั้งใจดีจะส่งผลดีกลับมา ช่วยเหลือผู้อื่นแล้วตัวเองจะได้รับโชค"]];
 let shaking=false,lastShake=0;
 function rnd(n){try{const a=new Uint32Array(1);crypto.getRandomValues(a);return a[0]%n}catch(e){return Math.floor(Math.random()*n)}}
-function doShake(){if(shaking)return;shaking=true;$("shake").disabled=true;$("ssOut").innerHTML="";const pop=$("popStick");pop.classList.remove("out");
-  const tube=$("tube");tube.classList.add("shaking");const rattle=setInterval(()=>beep(180+Math.random()*160,.05,.05),90);
-  setTimeout(()=>{clearInterval(rattle);tube.classList.remove("shaking");const n=1+rnd(28);pop.textContent=n;void pop.offsetWidth;pop.classList.add("out");
-    beep(660,.15,.1);setTimeout(()=>beep(990,.25,.1),130);setTimeout(()=>revealSS(n),650)},matchMedia("(prefers-reduced-motion:reduce)").matches?300:1700)}
 function revealSS(n){const [lvl,txt]=SS[n-1],R=mulberry(seedOf("ss"+n+ymd(TODAY())));const nums=[p2(R()*100|0),p2(R()*100|0),p3(R()*1000|0)];
   $("ssOut").innerHTML=`<div class="sscard"><span class="lvl">${lvl}</span><h2>เซียมซีใบที่ ${n}</h2><p>${txt}</p><div class="nums sm">${nums.map(x=>mini(x,x.length===2?"2 ตัว":"3 ตัว","hotb")).join("")}</div></div>${acts("เซียมซีใบที่ "+n,nums,txt)}`;
-  if(lvl==="ดีมาก")confetti();addHist(nums);shaking=false;$("shake").disabled=false;$("shake").textContent="เขย่าอีกครั้ง"}
+  if(lvl==="ดีมาก")confetti();addHist(nums);shaking=false;$("shake").disabled=false;$("shake").textContent="🙏 ขอพรอีกครั้ง"}
+/* ---------- เทพโยชิ เซียมซี ---------- */
+const BLESS=["ขอให้โยมโชคดี เงินทองไหลมาเทมา","ขอให้เฮงๆ ปังๆ ตลอดงวด","ขอให้สุขภาพแข็งแรง ร่ำรวยเงินทอง","ขอให้สิ่งที่หวังไว้สมปรารถนาทุกประการ","ขอให้การงานรุ่งเรือง มีแต่คนเมตตา","ขอให้ครอบครัวอบอุ่น มีความสุขทุกวัน","ขอให้เลขที่ได้นำโชคมาให้นะเจ้า"];
+function ysSay(text,typed){const B=$("ysBubble");B.hidden=false;
+  if(!typed||matchMedia("(prefers-reduced-motion:reduce)").matches){B.textContent=text;return Promise.resolve()}
+  B.textContent="";return new Promise(res=>{const ch=[...text];let i=0;const t=setInterval(()=>{B.textContent+=ch[i++];if(i%3===0)beep(620+Math.random()*80,.03,.03);if(i>=ch.length){clearInterval(t);res()}},42)})}
+async function doShake(){if(shaking)return;shaking=true;$("shake").disabled=true;$("ssOut").innerHTML="";
+  const H=$("heaven"),pop=$("popStick"),q=matchMedia("(prefers-reduced-motion:reduce)").matches?.3:1,wait=ms=>new Promise(r=>setTimeout(r,ms*q));
+  pop.classList.remove("out");H.className="heaven yclosed";
+  ysSay("ตั้งจิตให้มั่น อธิษฐานในใจนะเจ้า...");await wait(1000);
+  H.classList.add("shaking");const rattle=setInterval(()=>beep(180+Math.random()*160,.05,.05),90);await wait(1700);
+  clearInterval(rattle);H.classList.remove("shaking");
+  const n=1+rnd(28);pop.textContent=n;void pop.offsetWidth;pop.classList.add("out");beep(660,.15,.1);setTimeout(()=>beep(990,.25,.1),130);await wait(800);
+  H.classList.remove("yclosed");H.classList.add("bless");bellRing();
+  await ysSay(`ใบที่ ${n}... เทพโยชิขออวยพร`,true);await wait(500);
+  await ysSay(BLESS[rnd(BLESS.length)],true);await wait(400);
+  revealSS(n);setTimeout(()=>H.classList.remove("bless"),3500)}
 $("shake").onclick=doShake;
 function motionHandler(e){const a=e.accelerationIncludingGravity||e.acceleration;if(!a)return;
   if(Math.hypot(a.x||0,a.y||0,a.z||0)>24&&Date.now()-lastShake>2500&&!$("p-luck").hidden&&!$("lk-siamsi").hidden){lastShake=Date.now();doShake()}}
